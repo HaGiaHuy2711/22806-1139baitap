@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+
+    <!-- Bootstrap -->
+    <link th:fragment="link-css"
+          rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+
+    <!-- Custom CSS -->
+    <link th:fragment="custom-css"
+          rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<!-- HEADER -->
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">HUTECH</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/books">List Book</a>
+                <a class="nav-link" href="/books/add">Add Book</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- CONTENT -->
+<div class="container mt-4" th:fragment="content">
+    <!-- nội dung page con sẽ chèn vào đây -->
+</div>
+
+<!-- FOOTER -->
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-light text-center">
+    © 2026 HUTECH Education
+
+    <script th:src="@{/js/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</footer>
+
+</body>
+</html>

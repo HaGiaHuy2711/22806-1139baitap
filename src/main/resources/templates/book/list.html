@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">HUTECH</a>
+
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link active" href="/books">List Book</a>
+            <a class="nav-link" href="/books/add">Add Book</a>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="container mt-4">
+    <h2 class="mb-3">Book List</h2>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th class="text-end">Price</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td class="text-center" th:text="${book.id}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+
+            <!-- PRICE: căn phải + 2 số thập phân -->
+            <td class="text-end" th:text="${book.price}"></td>
+
+
+            <td th:text="${book.category}"></td>
+
+            <td class="text-center">
+                <a class="btn btn-primary btn-sm"
+                   th:href="@{/books/edit/{id}(id=${book.id})}">
+                    Edit
+                </a>
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{/books/delete/{id}(id=${book.id})}"
+                   onclick="return confirm('Delete this book?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer mt-5 py-3 bg-light text-center">
+    © 2026 HUTECH Education
+</footer>
+
+<script th:src="@{/js/jquery-3.7.0.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

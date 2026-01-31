@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ỨNG DỤNG QUẢN LÝ SÁCH</title>
+
+    <!-- Bootstrap + custom css -->
+    <th:block th:replace="~{layout::link-css}"></th:block>
+    <th:block th:replace="~{layout::custom-css}"></th:block>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<th:block th:replace="~{layout::header}"></th:block>
+
+<!-- CONTENT -->
+<div class="container mt-4 text-center">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title mb-3">
+                TRANG CHỦ ỨNG DỤNG QUẢN LÝ SÁCH
+            </h1>
+
+            
+            <hr>
+
+            <a href="/books" class="btn btn-primary me-2">
+                📚 Xem danh sách sách
+            </a>
+
+            <a href="/books/add" class="btn btn-success">
+                ➕ Thêm sách mới
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<th:block th:replace="~{layout::footer}"></th:block>
+
+</body>
+</html>
+
