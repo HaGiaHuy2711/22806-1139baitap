@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My App</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link th:fragment="link-css"
           rel="stylesheet"
           th:href="@{/css/bootstrap.min.css}">
@@ -15,31 +17,67 @@
           th:href="@{/css/style.css}">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column h-100">
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header th:fragment="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="/">HUTECH</a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/books">List Book</a>
-                <a class="nav-link" href="/books/add">Add Book</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">HUTECH</a>
+
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse"
+                 id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           aria-current="page"
+                           href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books">List Book</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/add">Add Book</a>
+                    </li>
+
+                    <!-- ===== CART MENU (NEW) ===== -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Cart</a>
+                    </li>
+
+                </ul>
             </div>
         </div>
     </nav>
 </header>
 
-<!-- CONTENT -->
-<div class="container mt-4" th:fragment="content">
-    <!-- nội dung page con sẽ chèn vào đây -->
+<!-- ===== CONTENT ===== -->
+<div class="container mt-4">
+    <div th:fragment="content"></div>
 </div>
 
-<!-- FOOTER -->
-<footer th:fragment="footer" class="footer mt-auto py-3 bg-light text-center">
-    © 2026 HUTECH Education
+<!-- ===== FOOTER ===== -->
+<footer th:fragment="footer"
+        class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+        Copyright &copy;
+        <span th:text="${#dates.year(#dates.createNow())}"></span>
+        <a href="https://www.hutech.edu.vn/">HUTECH Education</a>
+    </div>
 
+    <!-- JS -->
     <script th:src="@{/js/jquery-3.7.0.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </footer>

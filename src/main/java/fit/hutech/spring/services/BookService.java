@@ -1,46 +1,62 @@
 package fit.hutech.spring.services;
 
 import fit.hutech.spring.entities.Book;
+import fit.hutech.spring.repositories.IBookRepository;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(
+        isolation = Isolation.SERIALIZABLE,
+        rollbackFor = {Exception.class, Throwable.class}
+)
 public class BookService {
 
-    private final List<Book> books;
+    private final IBookRepository bookRepository;
 
-    // Lấy danh sách tất cả sách
-    public List<Book> getAllBooks() {
-        return books;
+    // Lấy danh sách sách có phân trang & sắp xếp
+    public List<Book> getAllBooks(
+            Integer pageNo,
+            Integer pageSize,
+            String sortBy
+    ) {
+        return bookRepository.findAllBooks(pageNo, pageSize, sortBy);
     }
 
-    // Tìm sách theo ID
+    // Lấy sách theo ID
     public Optional<Book> getBookById(Long id) {
-        return books.stream()
-                .filter(book -> book.getId().equals(id))
-                .findFirst();
+        return bookRepository.findById(id);
     }
 
     // Thêm sách mới
     public void addBook(Book book) {
-        books.add(book);
+        bookRepository.save(book);
     }
-    public void updateBook(Book updatedBook) {
-    for (int i = 0; i < books.size(); i++) {
-        if (books.get(i).getId().equals(updatedBook.getId())) {
-            books.set(i, updatedBook);
-            return;
-        }
+
+    // Cập nhật sách
+    public void updateBook(@NotNull Book book) {
+        Book existingBook = bookRepository
+                .findById(book.getId())
+                .orElse(null);
+
+        Objects.requireNonNull(existingBook).setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setPrice(book.getPrice());
+        existingBook.setCategory(book.getCategory());
+
+        bookRepository.save(existingBook);
     }
-}
-// XÓA SÁCH
+
+    // Xóa sách theo ID
     public void deleteBookById(Long id) {
-        getBookById(id).ifPresent(books::remove);
+        bookRepository.deleteById(id);
     }
-
 }
-

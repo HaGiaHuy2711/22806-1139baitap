@@ -1,47 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ỨNG DỤNG QUẢN LÝ SÁCH</title>
 
-    <!-- Bootstrap + custom css -->
-    <th:block th:replace="~{layout::link-css}"></th:block>
-    <th:block th:replace="~{layout::custom-css}"></th:block>
+    <!-- CSS -->
+    <th:block th:replace="~{layout :: link-css}"></th:block>
+    <th:block th:replace="~{layout :: custom-css}"></th:block>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<th:block th:replace="~{layout::header}"></th:block>
+<!-- Header -->
+<th:block th:replace="~{layout :: header}"></th:block>
 
-<!-- CONTENT -->
-<div class="container mt-4 text-center">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h1 class="card-title mb-3">
-                TRANG CHỦ ỨNG DỤNG QUẢN LÝ SÁCH
-            </h1>
-
-            
-            <hr>
-
-            <a href="/books" class="btn btn-primary me-2">
-                📚 Xem danh sách sách
-            </a>
-
-            <a href="/books/add" class="btn btn-success">
-                ➕ Thêm sách mới
-            </a>
+<div class="container mt-4">
+    <nav class="navbar navbar-light bg-light rounded">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                TRANG CHỦ ỨNG DỤNG QUẢN LÝ SÁCH – KẾT NỐI CSDL MYSQL
+            </span>
         </div>
-    </div>
+    </nav>
 </div>
 
-<!-- FOOTER -->
-<th:block th:replace="~{layout::footer}"></th:block>
+<!-- Footer -->
+<th:block th:replace="~{layout :: footer}"></th:block>
 
 </body>
 </html>
-
