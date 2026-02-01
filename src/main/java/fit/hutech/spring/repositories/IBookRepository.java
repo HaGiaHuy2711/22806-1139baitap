@@ -23,4 +23,7 @@ public interface IBookRepository
                 PageRequest.of(pageNo, pageSize, Sort.by(sortBy))
         ).getContent();
     }
+
+        // Search by title or author (case-insensitive)
+        List<Book> findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(String title, String author);
 }

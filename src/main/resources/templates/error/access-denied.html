@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Access Denied</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<th:block th:replace="~{layout :: header}"></th:block>
+<div class="container mt-5">
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Access Denied</h4>
+        <p>You do not have permission to access this page.</p>
+        <hr>
+        <a th:href="@{/login}" class="btn btn-primary">Login with an admin account</a>
+        <a th:href="@{/}" class="btn btn-secondary ms-2">Back to Home</a>
+    </div>
+</div>
+<th:block th:replace="~{layout :: footer}"></th:block>
+</body>
+</html>

@@ -46,8 +46,22 @@ public class BookController {
         return "book/list";
     }
 
+    // Search books
+    @GetMapping("/search")
+    public String searchBooks(
+            @RequestParam(name = "keyword", required = false) String keyword,
+            Model model
+    ) {
+        model.addAttribute("books", bookService.searchBooks(keyword));
+        model.addAttribute("currentPage", 0);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("totalPages", 0);
+        return "book/list";
+    }
+
     // Hiển thị form thêm sách
     @GetMapping("/add")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public String showAddForm(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute(
@@ -59,13 +73,15 @@ public class BookController {
 
     // Xử lý thêm sách
     @PostMapping("/add")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public String addBook(@ModelAttribute Book book) {
         bookService.addBook(book);
         return "redirect:/books";
     }
 
     // Hiển thị form sửa sách
-    @GetMapping("/edit/{id}")
+        @GetMapping("/edit/{id}")
+        @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public String showEditForm(
             @PathVariable Long id,
             Model model
@@ -81,6 +97,7 @@ public class BookController {
 
     // Xử lý cập nhật sách
     @PostMapping("/edit")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public String updateBook(@ModelAttribute Book book) {
         bookService.updateBook(book);
         return "redirect:/books";
@@ -88,6 +105,7 @@ public class BookController {
 
     // Xóa sách
     @GetMapping("/delete/{id}")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBookById(id);
         return "redirect:/books";

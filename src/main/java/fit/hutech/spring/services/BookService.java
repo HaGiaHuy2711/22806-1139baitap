@@ -59,4 +59,12 @@ public class BookService {
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
     }
+
+    // Tìm sách theo từ khóa (title hoặc author)
+    public List<Book> searchBooks(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            return getAllBooks(0, 1000, "id");
+        }
+        return bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(keyword, keyword);
+    }
 }

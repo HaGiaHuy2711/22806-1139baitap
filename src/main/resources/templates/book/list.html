@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,13 +74,13 @@
             <td th:text="${book.category.name}"></td>
             <td>
                 <!-- Edit -->
-                <a class="btn btn-primary btn-sm"
+                <a class="btn btn-primary btn-sm" sec:authorize="hasRole('ADMIN')"
                    th:href="@{/books/edit/{id}(id=${book.id})}">
                     Edit
                 </a>
 
                 <!-- Delete -->
-                <a class="btn btn-danger btn-sm"
+                <a class="btn btn-danger btn-sm" sec:authorize="hasRole('ADMIN')"
                    th:href="@{/books/delete/{id}(id=${book.id})}"
                    onclick="return confirm('Are you sure you want to delete this book?')">
                     Delete
